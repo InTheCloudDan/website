@@ -170,14 +170,18 @@ the language, though what shape that may take is unclear. Type classes are one
 option, OCaml style implicit modules are another, or perhaps it'll be
 something else entirely.</p>
 <h2><a class="header" href="#how-is-message-passing-typed" id="how-is-message-passing-typed">How is message passing typed?</a></h2>
-<p>Gleam doesn't currently have first class support for the BEAM's
-concurrency primitives such as <code>receive</code>, <code>send</code>, and <code>spawn</code>. This is because
-research is still ongoing as to the best way to apply a strong type system to
-them while still enabling established OTP patterns. For now these primitives
-should be used via the Erlang FFI, making them dynamically typed.</p>
-<p>Many OTP patterns such as <code>gen_server</code> are functional in nature and don't
-require direct use of these primitives so these behaviours can be implemented
-in Gleam today.</p>
+<p>Type safe message passing is implemented in Gleam as a set of libraries,
+rather than being part of the core language itself. This allows us to write safe
+concurrent programs that make use of Erlang's OTP framework while not locking
+us in to one specific approach to typing message passing. This lack of lock-in
+is important as typing message passing is an area of active research, we may
+discover an even better approach at a later date!</p>
+<p>If you'd like to see more consider checking out these libraries:</p>
+<ul>
+<li><a href="https://github.com/gleam-experiments/otp_process">https://github.com/gleam-experiments/otp_process</a></li>
+<li><a href="https://github.com/gleam-experiments/otp_agent">https://github.com/gleam-experiments/otp_agent</a></li>
+<li><a href="https://github.com/gleam-experiments/otp_supervisor">https://github.com/gleam-experiments/otp_supervisor</a></li>
+</ul>
 <h2><a class="header" href="#how-does-gleam-compare-to-alpaca" id="how-does-gleam-compare-to-alpaca">How does Gleam compare to Alpaca?</a></h2>
 <p><a href="https://github.com/alpaca-lang/alpaca">Alpaca</a> is similar to Gleam in that it is a statically typed language
 for the Erlang VM that is inspired by the ML family of languages. It's a
